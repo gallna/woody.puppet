@@ -23,8 +23,8 @@ forge "https://forgeapi.puppetlabs.com"
 
 # A module from Github pre-packaged tarball
 # mod 'puppetlabs-apache', '0.6.0', :github_tarball => 'puppetlabs/puppetlabs-apache'
-mod 'puppetlabs-apt', '2.4.0'
-mod 'saz-rsyslog', '<4.0.3'
+mod 'puppetlabs-apt', '<2.4.0'
+mod 'saz-rsyslog', '5.0.0'
 mod "puppetlabs-rancher",
 	:git => 'https://github.com/puppetlabs/puppetlabs-rancher.git'
   # :ref => '0.2.0'
@@ -32,5 +32,3 @@ mod "puppetlabs-rancher",
 mod 'puppet-nginx', '0.6.0'
 mod 'saz-sudo', '4.1.0'
 mod 'puppetlabs-ntp', '<4.2.0'
-  # :latest
-# mod 'nick-rancher', '1.0.0'
