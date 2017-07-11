@@ -1,0 +1,41 @@
+FORGE
+  remote: https://forgeapi.puppetlabs.com
+  specs:
+    garethr-docker (5.3.0)
+      puppetlabs-apt (<= 3.0.0, >= 1.8.0)
+      puppetlabs-stdlib (>= 4.1.0)
+      stahnma-epel (>= 0.0.6)
+    puppet-nginx (0.6.0)
+      puppetlabs-apt (< 3.0.0, >= 2.1.0)
+      puppetlabs-concat (< 3.0.0, >= 1.2.5)
+      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
+    puppetlabs-apt (2.4.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.13.0)
+    puppetlabs-concat (2.2.1)
+      puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
+    puppetlabs-ntp (4.1.2)
+      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
+    puppetlabs-stdlib (4.17.1)
+    saz-rsyslog (4.0.2)
+    saz-sudo (4.1.0)
+      puppetlabs-stdlib (>= 2.6.0)
+    stahnma-epel (1.2.2)
+      puppetlabs-stdlib (>= 3.0.0)
+
+GIT
+  remote: https://github.com/puppetlabs/puppetlabs-rancher.git
+  ref: master
+  sha: 652f0d6d88397c4be7db80bf71c0ea0e75470cfb
+  specs:
+    puppetlabs-rancher (0.2.0)
+      garethr-docker (>= 5.0.0)
+      puppetlabs-stdlib (>= 1.0.0)
+
+DEPENDENCIES
+  puppet-nginx (= 0.6.0)
+  puppetlabs-apt (= 2.4.0)
+  puppetlabs-ntp (< 4.2.0)
+  puppetlabs-rancher (>= 0)
+  saz-rsyslog (< 4.0.3)
+  saz-sudo (= 4.1.0)
+

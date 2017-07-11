@@ -1,0 +1,4 @@
+classes:
+  - profile::jenkins::master
+
+profile::jenkins::master::jenkins_port: '80'
