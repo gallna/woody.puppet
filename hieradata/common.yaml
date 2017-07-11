@@ -1,8 +1,8 @@
 ---
 classes:
   - profiles::global
-
----
+ntp::restrict:
+  -
 ntp::autoupdate: true
 ntp::enable: true
 ntp::servers:
