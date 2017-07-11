@@ -1,10 +1,10 @@
 ---
 :hierarchy:
-  - "nodes/%{::clientcert}"
-  - "groups/%{::group}"
-  - "roles/%{::role}"
-  - "common"
+  - "nodes/%{clientcert}"
+  - "groups/%{group}"
+  - "roles/%{role}"
+  - common
 :backends:
   - yaml
 :yaml:
-  :datadir: 'hieradata'
+  :datadir: "environments/%{environment}/hieradata"
