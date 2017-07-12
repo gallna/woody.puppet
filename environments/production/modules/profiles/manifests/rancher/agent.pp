@@ -3,7 +3,6 @@
 # Run Rancher agent container.
 #
 class profiles::rancher::agent($server_url) {
-  include rancher
   class { 'docker':
     version => '1.12.3-0~trusty'
   }
