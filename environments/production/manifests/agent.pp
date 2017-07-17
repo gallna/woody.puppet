@@ -1,4 +1,4 @@
 
 class{'profiles::rancher::agent':
-  server_url => 'http://192.168.121.239:8080/v1/scripts/77A171F5BAAC00E6511C:1483142400000:mh7fIE8f7gqr76dwrHfVnFa9jrI'
+  server_url => 'http://10.222.11.3:666/v1/scripts/68CD21B036A1C8F8729D:1483142400000:ad2xOq5PZmxOv83mzh0p07Flk'
 }
