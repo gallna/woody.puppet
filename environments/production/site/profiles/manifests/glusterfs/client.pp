@@ -29,7 +29,7 @@ class profiles::glusterfs::client ($host, $volume) {
     ensure  => 'mounted',
     device  => "${host}:${volume}",
     fstype  => 'glusterfs',
-    options => 'noatime,nodev,noexec,nosuid',
+    options => 'defaults,_netdev,use-readdirp=yes,direct-io-mode=disable',
     atboot  => true,
     require => [ Package['glusterfs-client'],
                  File['/export'],
