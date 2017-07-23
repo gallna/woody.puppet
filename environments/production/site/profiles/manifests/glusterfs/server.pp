@@ -12,10 +12,9 @@ class profiles::glusterfs::server ($pool) {
   # Main package and service it provides
   package { 'glusterfs-server': ensure => installed }
 
-  service { 'glusterd':
+  service { 'glusterfs-server':
     ensure    => running,
     enable    => true,
-    hasstatus => true,
     require   => Package['glusterfs-server'],
   }
 
