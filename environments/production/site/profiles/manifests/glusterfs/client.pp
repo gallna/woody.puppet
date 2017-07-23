@@ -12,12 +12,17 @@ class profiles::glusterfs::client ($host, $volume) {
 
   $mount_point = "/export/${volume}"
 
+  file { '/export':
+    ensure  => directory,
+    seltype => 'usr_t',
+  }
+
   file { $mount_point:
     ensure  => directory,
     seltype => 'usr_t',
   }
 
-  package { 'glusterfs-fuse': ensure => installed }
+  package { 'glusterfs-client': ensure => installed }
 
   mount { $mount_point:
     ensure  => 'mounted',
@@ -25,6 +30,8 @@ class profiles::glusterfs::client ($host, $volume) {
     fstype  => 'glusterfs',
     options => 'noatime,nodev,noexec,nosuid',
     atboot  => true,
-    require => [ Package['glusterfs-fuse'], File[$mount_point] ],
+    require => [ Package['glusterfs-client'],
+                 File['/export'],
+                 File[$mount_point] ],
   }
 }

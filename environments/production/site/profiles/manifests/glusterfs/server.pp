@@ -23,6 +23,6 @@ class profiles::glusterfs::server ($pool) {
   @@gluster::peer { $::fqdn:
     pool => $pool,
   }
-  Gluster::Peer <<| pool == $pool |>>
 
+  Gluster::Peer <<| pool == $pool |>>
 }
