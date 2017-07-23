@@ -4,7 +4,7 @@ classes:
   - profiles::glusterfs::brick
   - profiles::glusterfs::server
 
-profiles::glusterfs::client::host: 10.192.0.155
+profiles::glusterfs::client::host: 10.192.74.37
 profiles::glusterfs::client::volume: YogiBerra
 
 profiles::glusterfs::brick::device: xvde
