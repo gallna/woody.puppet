@@ -5,20 +5,12 @@ FORGE
       puppetlabs-apt (<= 3.0.0, >= 1.8.0)
       puppetlabs-stdlib (>= 4.1.0)
       stahnma-epel (>= 0.0.6)
-    puppet-nginx (0.6.0)
-      puppetlabs-apt (< 3.0.0, >= 2.1.0)
-      puppetlabs-concat (< 3.0.0, >= 1.2.5)
-      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
     puppetlabs-apt (2.3.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
-    puppetlabs-concat (2.2.1)
-      puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
     puppetlabs-ntp (4.1.2)
       puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
     puppetlabs-stdlib (4.17.1)
     saz-rsyslog (5.0.0)
-    saz-sudo (4.1.0)
-      puppetlabs-stdlib (>= 2.6.0)
     stahnma-epel (1.2.2)
       puppetlabs-stdlib (>= 3.0.0)
 
@@ -31,11 +23,26 @@ GIT
       garethr-docker (>= 5.0.0)
       puppetlabs-stdlib (>= 1.0.0)
 
+GIT
+  remote: https://github.com/thias/puppet-glusterfs.git
+  ref: master
+  sha: 1a2bcc8857c60046786fa9f92899b949dda2a94b
+  specs:
+    puppet-glusterfs (0.0.1)
+
+GIT
+  remote: https://github.com/voxpupuli/puppet-gluster.git
+  ref: master
+  sha: 590d83d6f57f1e42f7974cc50cb6de2b1748267c
+  specs:
+    puppet-gluster (3.0.1-rc0)
+      puppetlabs-apt (< 3.0.0, >= 2.1.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
+
 DEPENDENCIES
-  puppet-nginx (= 0.6.0)
-  puppetlabs-apt (< 2.4.0)
+  puppet-gluster (>= 0)
+  puppet-glusterfs (>= 0)
   puppetlabs-ntp (< 4.2.0)
   puppetlabs-rancher (>= 0)
   saz-rsyslog (= 5.0.0)
-  saz-sudo (= 4.1.0)
 

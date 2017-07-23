@@ -1,0 +1,12 @@
+classes:
+  - profiles::glusterfs::client
+  - profiles::glusterfs::brick
+  - profiles::glusterfs::server
+
+profiles::glusterfs::client::host: ip-10-192-64-221
+profiles::glusterfs::client::volume: YogiBerra
+
+profiles::glusterfs::brick::device: xvdf
+profiles::glusterfs::brick::brick: MickeyMouse
+
+profiles::glusterfs::server::pool: dash
