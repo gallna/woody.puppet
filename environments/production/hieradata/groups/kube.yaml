@@ -7,7 +7,7 @@ classes:
 profiles::glusterfs::client::host: ip-10-192-64-221
 profiles::glusterfs::client::volume: YogiBerra
 
-profiles::glusterfs::brick::device: xvdf
+profiles::glusterfs::brick::device: xvde
 profiles::glusterfs::brick::brick: HerbertHoover
 
 profiles::glusterfs::server::pool: kube
