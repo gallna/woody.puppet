@@ -8,7 +8,7 @@
 #     volume => "YogiBerra"
 #  }
 #
-class profiles::glusterfs::repo ($version = '3.11') {
+class profiles::glusterfs::repo ($version = '3.8') {
 
   class { 'apt': }
 
