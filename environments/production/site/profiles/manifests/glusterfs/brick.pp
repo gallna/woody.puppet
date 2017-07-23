@@ -17,12 +17,9 @@ class profiles::glusterfs::brick ($device, $brick) {
     seltype => 'usr_t',
   }
 
-  package { 'xfsprogs': ensure => installed }
-
-  exec { 'mkfs /dev/xvdX':
+  exec {"mkfs /dev/${device}":
     command     => "/sbin/mkfs.ext4 /dev/${device}",
-    require     => Package['xfsprogs'],
-    refreshonly => true,
+    unless      => "/sbin/blkid -t TYPE=ext4 /dev/${device}"
   }
 
   mount { $mount_point:
@@ -31,6 +28,6 @@ class profiles::glusterfs::brick ($device, $brick) {
     fstype  => 'ext4',
     options => 'defaults',
     atboot  => true,
-    require => [ Exec['mkfs /dev/xvdX'], File[$mount_point] ],
+    require => [ Exec["mkfs /dev/${device}"], File[$mount_point] ],
   }
 }

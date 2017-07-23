@@ -20,6 +20,7 @@ class profiles::glusterfs::client ($host, $volume) {
   file { $mount_point:
     ensure  => directory,
     seltype => 'usr_t',
+    require => File['/export'],
   }
 
   package { 'glusterfs-client': ensure => installed }
