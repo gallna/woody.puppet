@@ -16,7 +16,8 @@ class profiles::glusterfs::client ($host, $volume) {
 
   package { 'glusterfs-client':
     ensure => installed
-    name   => 'glusterfs-client=3.7.*'
+    name   => 'glusterfs-client=3.7.*',
+    install_options => [ '--force-yes' ],
   }->
 
   mount { "${host}:${volume}" :
