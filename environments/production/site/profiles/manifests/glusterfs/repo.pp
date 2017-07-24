@@ -8,7 +8,7 @@
 #     volume => "YogiBerra"
 #  }
 #
-class profiles::glusterfs::repo ($version = '3.8') {
+class profiles::glusterfs::repo ($version = '3.7') {
 
   tidy { '/etc/apt/sources.list.d':
     path    => '/etc/apt/sources.list.d',
