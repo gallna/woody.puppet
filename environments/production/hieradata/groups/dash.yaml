@@ -1,6 +1,6 @@
 classes:
   - profiles::glusterfs::repo
-  # - profiles::glusterfs::client
+  - profiles::glusterfs::client
   - profiles::glusterfs::brick
   - profiles::glusterfs::server
 
