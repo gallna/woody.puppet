@@ -13,7 +13,7 @@ class profiles::glusterfs::server ($pool) {
   package { 'glusterfs-server':
     ensure => installed,
     name   => 'glusterfs-server=3.7.*',
-    install_options => [ '--force-yes' ],
+    install_options => [ '--reinstall', '--force-yes' ],
   }
 
   service { 'glusterfs-server':
