@@ -14,7 +14,7 @@ class profiles::glusterfs::repo ($version = '3.7') {
     path    => '/etc/apt/sources.list.d',
     recurse => 1,
     age     => '1w',
-    matches => [ 'gluster-glusterfs-3_8*' ],
+    matches => [ 'gluster-glusterfs-3_8*', 'gluster-glusterfs-3_11*' ],
   }
 
   class { 'apt': }
