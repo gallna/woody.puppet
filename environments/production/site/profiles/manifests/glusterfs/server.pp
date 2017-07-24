@@ -10,7 +10,10 @@
 class profiles::glusterfs::server ($pool) {
 
   # Main package and service it provides
-  package { 'glusterfs-server': ensure => installed }
+  package { 'glusterfs-server':
+    ensure => installed,
+    name   => 'glusterfs-server=3.7.*'
+  }
 
   service { 'glusterfs-server':
     ensure    => running,

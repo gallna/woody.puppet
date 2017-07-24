@@ -10,29 +10,21 @@
 #
 class profiles::glusterfs::client ($host, $volume) {
 
-  $mount_point = "/export/${volume}"
+  file { [ '/exports', "/exports/${volume}" ]:
+    ensure  => 'directory',
+  }->
 
-  file { '/export':
-    ensure  => directory,
-    seltype => 'usr_t',
-  }
+  package { 'glusterfs-client':
+    ensure => installed
+    name   => 'glusterfs-client=3.7.*'
+  }->
 
-  file { $mount_point:
-    ensure  => directory,
-    seltype => 'usr_t',
-    require => File['/export'],
-  }
-
-  package { 'glusterfs-client': ensure => installed }
-
-  mount { $mount_point:
+  mount { "${host}:${volume}" :
     ensure  => 'mounted',
     device  => "${host}:${volume}",
     fstype  => 'glusterfs',
     options => 'defaults,_netdev,use-readdirp=yes,direct-io-mode=disable',
     atboot  => true,
-    require => [ Package['glusterfs-client'],
-                 File['/export'],
-                 File[$mount_point] ],
+    require => [ Package['glusterfs-client'], File[ "/export/${volume}" ],
   }
 }
