@@ -20,6 +20,14 @@ class profiles::glusterfs::client ($host, $volume) {
     install_options => [ '--reinstall', '--force-yes' ],
   }->
 
+  file_line { 'bashrc_proxy':
+    ensure            => absent,
+    path              => '/etc/fstab',
+    line              => '10.192.74.37:YogiBerra	10.192.74.37:YogiBerra	glusterfs	defaults,noauto,_netdev,use-readdirp=yes,direct-io-mode=disable	0	0',
+    match             => '^10.192.74.37:YogiBerra[ ]+10.192.74.37:YogiBerra',
+    match_for_absence => true,
+  }->
+
   mount { "/export/${volume}" :
     ensure  => 'mounted',
     device  => "${host}:${volume}",
