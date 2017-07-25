@@ -15,16 +15,16 @@ class profiles::glusterfs::client ($host, $volume) {
   }->
 
   package { 'glusterfs-client':
-    ensure => installed
+    ensure => installed,
     name   => 'glusterfs-client=3.7.*',
-    install_options => [ '--force-yes' ],
+    install_options => [ '--reinstall', '--force-yes' ],
   }->
 
   mount { "${host}:${volume}" :
     ensure  => 'mounted',
     device  => "${host}:${volume}",
     fstype  => 'glusterfs',
-    options => 'defaults,_netdev,use-readdirp=yes,direct-io-mode=disable',
+    options => 'defaults,noauto,_netdev,use-readdirp=yes,direct-io-mode=disable',
     atboot  => true,
     require => [ Package['glusterfs-client'], File[ "/export/${volume}" ],
   }
