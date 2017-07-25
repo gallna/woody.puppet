@@ -10,7 +10,7 @@
 #
 class profiles::glusterfs::client ($host, $volume) {
 
-  file { [ '/exports', "/exports/${volume}" ]:
+  file { [ '/export', "/export/${volume}" ]:
     ensure  => 'directory',
   }->
 
@@ -20,7 +20,7 @@ class profiles::glusterfs::client ($host, $volume) {
     install_options => [ '--reinstall', '--force-yes' ],
   }->
 
-  mount { "${host}:${volume}" :
+  mount { "/export/${volume}" :
     ensure  => 'mounted',
     device  => "${host}:${volume}",
     fstype  => 'glusterfs',
