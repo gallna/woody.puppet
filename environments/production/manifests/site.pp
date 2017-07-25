@@ -37,7 +37,7 @@ class{'rsyslog::client':
   remote_servers => [
     {
       host => 'graylog.udp.wrrr.online',
-      port      => '514',
+      port      => '517',
       protocol  => 'udp',
     }
   ]
