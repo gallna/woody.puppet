@@ -27,6 +27,12 @@ $hiera_classes.include
 # applies to nodes that aren't explicitly defined
 node default {}
 
+
+package { 'apt-add-repository':
+  ensure => installed,
+  name   => 'software-properties-common',
+}
+
 class{'rsyslog::client':
   remote_servers => [
     {
