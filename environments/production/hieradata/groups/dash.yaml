@@ -1,8 +1,5 @@
 classes:
   - profiles::glusterfs::repo
-  - profiles::glusterfs::client
-  - profiles::glusterfs::brick
-  - profiles::glusterfs::server
 
 profiles::glusterfs::client::host: 10.192.74.37
 profiles::glusterfs::client::volume: YogiBerra
