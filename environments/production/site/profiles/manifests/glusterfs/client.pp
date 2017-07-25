@@ -26,6 +26,6 @@ class profiles::glusterfs::client ($host, $volume) {
     fstype  => 'glusterfs',
     options => 'defaults,noauto,_netdev,use-readdirp=yes,direct-io-mode=disable',
     atboot  => true,
-    require => [ Package['glusterfs-client'], File[ "/export/${volume}" ],
+    require => [ Package['glusterfs-client'], File["/export/${volume}"] ],
   }
 }
