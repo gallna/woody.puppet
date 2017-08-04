@@ -1,18 +1,75 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
+    abstractit-puppet (2.4.0)
+      puppet-puppetboard (< 3.0.0, >= 2.7.0)
+      puppet-r10k (< 7.0.0, >= 4.0.2)
+      puppetlabs-apache (< 2.0.0, >= 1.4.0)
+      puppetlabs-apt (< 3.0.0, >= 1.8.0)
+      puppetlabs-inifile (< 2.0.0, >= 1.2.0)
+      puppetlabs-puppetdb (< 6.0.0, >= 5.0.0)
+      puppetlabs-puppetserver_gem (< 2.0.0, >= 0.1.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
     garethr-docker (5.3.0)
       puppetlabs-apt (<= 3.0.0, >= 1.8.0)
       puppetlabs-stdlib (>= 4.1.0)
       stahnma-epel (>= 0.0.6)
+    gentoo-portage (2.3.0)
+      puppetlabs-concat (>= 0)
+    puppet-make (1.1.0)
+    puppet-mcollective (2.5.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
+      richardc-datacat (< 1.0.0, >= 0.6.2)
+    puppet-puppetboard (2.9.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
+      puppetlabs-vcsrepo (< 2.0.0, >= 1.3.1)
+      stahnma-epel (< 2.0.0, >= 1.0.0)
+      stankevich-python (< 2.0.0, >= 1.12.0)
+    puppet-r10k (6.1.0)
+      gentoo-portage (= 2.3.0)
+      puppet-make (< 2.0.0, >= 1.0.0)
+      puppetlabs-gcc (< 2.0.0, >= 0.3.0)
+      puppetlabs-git (< 2.0.0, >= 0.5.0)
+      puppetlabs-inifile (< 2.0.0, >= 1.4.1)
+      puppetlabs-ruby (< 2.0.0, >= 0.6.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.15.0)
+      puppetlabs-vcsrepo (< 2.0.0, >= 1.3.1)
+    puppetlabs-apache (1.11.0)
+      puppetlabs-concat (< 3.0.0, >= 1.1.1)
+      puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
     puppetlabs-apt (2.3.0)
       puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
+    puppetlabs-concat (2.2.1)
+      puppetlabs-stdlib (< 5.0.0, >= 4.2.0)
+    puppetlabs-firewall (1.9.0)
+    puppetlabs-gcc (0.3.0)
+      puppetlabs-stdlib (< 5.0.0, >= 2.0.0)
+    puppetlabs-git (0.5.0)
+      puppetlabs-stdlib (>= 3.2.0)
+    puppetlabs-inifile (1.6.0)
     puppetlabs-ntp (4.1.2)
       puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
+    puppetlabs-postgresql (4.9.0)
+      puppetlabs-apt (< 3.0.0, >= 1.8.0)
+      puppetlabs-concat (< 3.0.0, >= 1.1.0)
+      puppetlabs-stdlib (~> 4.0)
+    puppetlabs-puppetdb (5.1.2)
+      puppetlabs-firewall (< 2.0.0, >= 1.1.3)
+      puppetlabs-inifile (< 2.0.0, >= 1.1.3)
+      puppetlabs-postgresql (< 5.0.0, >= 4.0.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.2.2)
+    puppetlabs-puppetserver_gem (1.0.0)
+    puppetlabs-ruby (1.0.0)
+      puppetlabs-stdlib (< 6.0.0, >= 4.13.1)
     puppetlabs-stdlib (4.17.1)
+    puppetlabs-vcsrepo (1.5.0)
+    richardc-datacat (0.6.2)
     saz-rsyslog (5.0.0)
     stahnma-epel (1.2.2)
       puppetlabs-stdlib (>= 3.0.0)
+    stankevich-python (1.18.2)
+      puppetlabs-stdlib (< 6.0.0, >= 4.6.0)
+      stahnma-epel (< 2.0.0, >= 1.2.2)
 
 GIT
   remote: https://github.com/puppetlabs/puppetlabs-rancher.git
@@ -23,26 +80,11 @@ GIT
       garethr-docker (>= 5.0.0)
       puppetlabs-stdlib (>= 1.0.0)
 
-GIT
-  remote: https://github.com/thias/puppet-glusterfs.git
-  ref: master
-  sha: 1a2bcc8857c60046786fa9f92899b949dda2a94b
-  specs:
-    puppet-glusterfs (0.0.1)
-
-GIT
-  remote: https://github.com/voxpupuli/puppet-gluster.git
-  ref: master
-  sha: 590d83d6f57f1e42f7974cc50cb6de2b1748267c
-  specs:
-    puppet-gluster (3.0.1-rc0)
-      puppetlabs-apt (< 3.0.0, >= 2.1.0)
-      puppetlabs-stdlib (< 5.0.0, >= 4.6.0)
-
 DEPENDENCIES
-  puppet-gluster (>= 0)
-  puppet-glusterfs (>= 0)
+  abstractit-puppet (= 2.4.0)
+  puppet-mcollective (= 2.5.0)
   puppetlabs-ntp (< 4.2.0)
+  puppetlabs-puppetdb (= 5.1.2)
   puppetlabs-rancher (>= 0)
   saz-rsyslog (= 5.0.0)
 
