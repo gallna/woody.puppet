@@ -10,9 +10,7 @@
 #
 class profiles::glusterfs::repo ($version = '3.7') {
 
-  apt::ppa { "ppa:gluster/glusterfs-${version}":
-    before => Exec['apt-update']
-  }
+  apt::ppa { "ppa:gluster/glusterfs-${version}": }
 
   Class['apt::ppa'] -> Package <| provider == 'apt' |>
   Class['apt::update'] -> Package <| provider == 'apt' |>
@@ -20,13 +18,13 @@ class profiles::glusterfs::repo ($version = '3.7') {
   package { 'glusterfs-client':
     ensure    => installed,
     name      => "glusterfs-client=${version}.*",
-    require   => Class['apt::ppa'],
+    require   => Apt::Ppa["ppa:gluster/glusterfs-${version}"],
   }->
 
   package { 'glusterfs-server':
     ensure    => installed,
     name      => "glusterfs-server=${version}.*",
-    require   => Class['apt::ppa'],
+    require   => Apt::Ppa["ppa:gluster/glusterfs-${version}"],
   }->
 
   service { 'glusterfs-server':
