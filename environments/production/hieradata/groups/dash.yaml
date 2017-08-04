@@ -1,11 +1,4 @@
 classes:
   - profiles::glusterfs::repo
-  - profiles::glusterfs::server
 
-profiles::glusterfs::client::host: 10.192.74.37
-profiles::glusterfs::client::volume: YogiBerra
-
-profiles::glusterfs::brick::device: xvde
-profiles::glusterfs::brick::brick: MickeyMouse
-
-profiles::glusterfs::server::pool: dash
+profiles::glusterfs::repo: "3.7"
