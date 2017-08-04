@@ -8,4 +8,4 @@ puppetdb::listen_address: 0.0.0.0
 puppetdb::open_ssl_listen_port: true
 puppetdb::ssl_listen_port: 8081
 puppetdb::ssl_listen_address: 0.0.0.0
-puppetdb::postgres_version: 9.6
+puppetdb::postgres_version: "9.6"
