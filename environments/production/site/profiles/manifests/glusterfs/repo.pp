@@ -1,4 +1,4 @@
-# Class: profiles::glusterfs::client
+# Class: profiles::glusterfs::repo
 #
 # Manage client-side GlusterFS mounts.
 #
@@ -10,19 +10,28 @@
 #
 class profiles::glusterfs::repo ($version = '3.7') {
 
-  tidy { '/etc/apt/sources.list.d':
-    path    => '/etc/apt/sources.list.d',
-    recurse => 1,
-    age     => '1w',
-    matches => [ 'gluster-glusterfs-3_11-trusty.*',
-                 'gluster-glusterfs-3_8-trusty.*' ],
+  apt::ppa { "ppa:gluster/glusterfs-${version}":
+    before => Exec['apt-update']
   }
-
-  class { 'apt': }
-  apt::ppa { "ppa:gluster/glusterfs-3.8": ensure => absent }
-  apt::ppa { "ppa:gluster/glusterfs-3.11": ensure => absent }
-  apt::ppa { "ppa:gluster/glusterfs-${version}": }
 
   Class['apt::ppa'] -> Package <| provider == 'apt' |>
   Class['apt::update'] -> Package <| provider == 'apt' |>
+
+  package { 'glusterfs-client':
+    ensure    => installed,
+    name      => "glusterfs-client=${version}.*",
+    require   => Class['apt::ppa'],
+  }->
+
+  package { 'glusterfs-server':
+    ensure    => installed,
+    name      => "glusterfs-server=${version}.*",
+    require   => Class['apt::ppa'],
+  }->
+
+  service { 'glusterfs-server':
+    ensure    => running,
+    enable    => true,
+    require   => Package['glusterfs-server'],
+  }
 }

@@ -4,9 +4,11 @@
 #
 class profiles::global {
   include ntp
+
   package { 'attr':
     ensure => installed,
   }
+
   package { 'vim':
     ensure => installed,
   }

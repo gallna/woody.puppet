@@ -18,6 +18,24 @@ This repository contains complete Puppet configuration used to provision Kuberne
   + install and configure Mcollective
   + install GlusterFS
 
+## Roles/groups
+
++ role
+  - agent
+  - server
+  - foreman
++ group
+  - kube
+  - dash
++ collective
+  - mcollective
++ hostgroup
+  - foreman
+  - rancher-server
+  - rancher-agent
+  - rancher-agent/dash
+  - rancher-agent/kube
+
 ### Links
 
 https://github.com/dalen/puppetexplorer
