@@ -1,7 +1,6 @@
 ---
 classes:
   - profiles::global
-  - profiles::puppet::agent
 
 ntp::restrict:
   -

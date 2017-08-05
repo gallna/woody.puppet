@@ -1,4 +1,5 @@
 classes:
+  - profiles::puppet::agent
   - profiles::rancher::agent
   - profiles::glusterfs::repo
   - mco::server
