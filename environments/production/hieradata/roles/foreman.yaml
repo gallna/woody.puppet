@@ -1,6 +1,7 @@
 classes:
   - puppetdb
   - puppetdb::master::config
+  - mco::client
 
 puppetdb::open_listen_port: true
 puppetdb::listen_port: 8080
