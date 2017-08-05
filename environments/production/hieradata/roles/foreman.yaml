@@ -10,3 +10,44 @@ puppetdb::open_ssl_listen_port: true
 puppetdb::ssl_listen_port: 8081
 puppetdb::ssl_listen_address: 0.0.0.0
 puppetdb::postgres_version: "9.6"
+
+mcollective::server: true
+mcollective::client: true
+mcollective::manage_packages: false
+mcollective::connector: rabbitmq
+mcollective::middleware_hosts:
+  - 'rabbitmq.wrrr.online'
+mcollective::middleware_port: '61613'
+mcollective::securityprovider: 'psk'
+mcollective::psk: unset
+mcollective::middleware_user: 'mcollective'
+mcollective::middleware_password: bf7ec929f68e6a0f3be8
+mcollective::middleware_admin_user: 'admin'
+mcollective::middleware_admin_password: fe769df46bc81aefe308
+mcollective::confdir: '/etc/puppetlabs/mcollective'
+mcollective::core_libdir: /opt/puppetlabs/mcollective/plugins
+mcollective::site_libdir: /opt/puppetlabs/mcollective/plugins/mcollective
+mcollective::main_collective: "%{::collective}"
+mcollective::collectives: "mcollective,%{::collective}"
+
+mcollective::plugin:
+  package:
+    name: package
+    has_client: false
+    source: puppet:///modules/mco/plugins
+  filemgr:
+    name: filemgr
+    has_client: false
+    source: puppet:///modules/mco/plugins
+  process:
+    name: process
+    has_client: false
+    source: puppet:///modules/mco/plugins
+  puppet:
+    name: puppet
+    has_client: false
+    source: puppet:///modules/mco/plugins
+  service:
+    name: service
+    has_client: false
+    source: puppet:///modules/mco/plugins
