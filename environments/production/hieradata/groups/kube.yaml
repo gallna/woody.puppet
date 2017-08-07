@@ -1,4 +1,4 @@
 classes:
   - profiles::glusterfs::repo
 
-profiles::glusterfs::repo: "3.7"
+profiles::glusterfs::repo: "3.10"

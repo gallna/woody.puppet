@@ -12,12 +12,20 @@ class profiles::global {
   package { 'vim':
     ensure => installed,
   }
+  
+  package { 'lvm2':
+    ensure => installed,
+  }
+
+  package { 'thin-provisioning-tools':
+    ensure => installed,
+  }
 
   package { 'apt-add-repository':
     ensure => installed,
     name   => 'software-properties-common',
   }
-  
+
   class{'rsyslog::client':
     remote_servers => [
       {
