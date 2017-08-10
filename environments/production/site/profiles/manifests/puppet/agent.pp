@@ -2,12 +2,10 @@
 # ===========================
 # Configure puppet agent.
 #
-class profiles::puppet::agent {
-  if $::collective != undef {
-    $collective = $::collective
-  } else {
-    $collective = 'mcollective'
-  }
+class profiles::puppet::agent (
+  $collective = 'mcollective'
+  ) {
+
   class { '::puppet::profile::agent':
     allinone      => true,
     collection    => 'PC1',

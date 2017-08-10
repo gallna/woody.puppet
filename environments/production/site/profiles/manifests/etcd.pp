@@ -2,7 +2,6 @@
 #
 # Ensure etcd backup storage mounted
 #
-#
 class profiles::etcd () {
   fstab { 'Another test fstab entry':
     source => 'fs-5e1bed97.efs.eu-west-1.amazonaws.com:/api/schedule-volume-io/vendor/nikic/fast-route/route/efs-schedule/etcd',

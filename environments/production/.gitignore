@@ -1,3 +1,6 @@
 .librarian/
 .tmp/
 modules/
+/.vagrant/
+/log/
+/junit/
