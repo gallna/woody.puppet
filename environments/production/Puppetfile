@@ -13,6 +13,7 @@ forge "https://forgeapi.puppetlabs.com"
 mod 'abstractit-puppet', '2.4.0'
 mod 'puppet-mcollective', '2.5.0'
 mod 'puppetlabs-puppetdb', '5.1.2'
+mod 'AlexCline-fstab', '0.5.4'
 mod 'puppetlabs-ntp', '<4.2.0'
 mod 'saz-rsyslog', '5.0.0'
 # A module from git

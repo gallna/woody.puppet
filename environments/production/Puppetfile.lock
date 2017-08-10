@@ -1,6 +1,8 @@
 FORGE
   remote: https://forgeapi.puppetlabs.com
   specs:
+    AlexCline-fstab (0.5.4)
+      puppetlabs-stdlib (>= 4.1.0)
     abstractit-puppet (2.4.0)
       puppet-puppetboard (< 3.0.0, >= 2.7.0)
       puppet-r10k (< 7.0.0, >= 4.0.2)
@@ -81,6 +83,7 @@ GIT
       puppetlabs-stdlib (>= 1.0.0)
 
 DEPENDENCIES
+  AlexCline-fstab (= 0.5.4)
   abstractit-puppet (= 2.4.0)
   puppet-mcollective (= 2.5.0)
   puppetlabs-ntp (< 4.2.0)
