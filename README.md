@@ -36,7 +36,27 @@ This repository contains complete Puppet configuration used to provision Kuberne
   - rancher-agent/dash
   - rancher-agent/kube
 
+## Usage (through Makefile):
+
++ Disable/enable working on the local system.
+  - `make disable`
+  - `make enable`
++ Launch `puppet agent`
+  - `make agent`
++ Apply configuration to the local host.
+  - `make manifests/%.pp`
+  - `make apply` - equivalent of `make manifests/site.pp`
++ Install dependencies
+  - `make librarian`
++ Launch tests
+  - `make spec/classes/*.rb`
+  - `make spec/acceptance/*.rb`
++ Retrieve facts, see invoked classes
+  - `make facts`
+  - `make classes`
+
 ### Links
 
 https://github.com/dalen/puppetexplorer
 https://github.com/vshn/puppet-in-docker
+http://rspec-puppet.com/documentation/

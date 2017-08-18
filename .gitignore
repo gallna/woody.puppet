@@ -4,3 +4,4 @@
 /modules/
 /.vagrant/
 /log/
+/facts.d/
