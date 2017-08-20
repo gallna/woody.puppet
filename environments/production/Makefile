@@ -28,6 +28,8 @@ disable:
 enable:
 	$(puppet) agent --enable
 
+facts: ; $(puppet_facts)
+
 define puppet_facts =
 	$(call SAY,1,$(user_facts))
 	$(call SAY,2,$(shell $(facter) environment clientcert role group collective))
@@ -51,13 +53,21 @@ define puppet_agent =
 	$(puppet) agent --noop $(verbose)
 endef
 
-manifests/%.pp: librarian facts.d/site.txt ; $(puppet_facts)
-	@$(puppet_apply)
+define puppet_tags =
+	$(puppet) agent --noop $(verbose) --waitforcert=60 --tags $(shell sed -n "s/class \+\([a-zA-Z0-9:]*$$(basename $@ .pp)\).*/\1/p" $@)
+endef
+
+site/%.pp: librarian facts.d/site.txt facts ; $(puppet_tags)
+
+manifests/%.pp: librarian facts.d/site.txt facts ; $(puppet_apply)
 
 apply:
 	$(MAKE) manifests/site.pp
 
 agent: ; $(puppet_agent)
+
+server:
+	puppet master --no-daemonize --verbose
 
 classes: facts.d/facter.yaml
 	/opt/puppetlabs/bin/hiera --config $(hiera) --debug -y facts.d/facter.yaml classes $($(user_facts))

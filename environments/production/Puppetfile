@@ -16,6 +16,7 @@ mod 'puppetlabs-puppetdb', '5.1.2'
 mod 'AlexCline-fstab', '0.5.4'
 mod 'puppetlabs-ntp', '<4.2.0'
 mod 'saz-rsyslog', '5.0.0'
+mod 'derdanne-nfs', '2.0.4'
 # A module from git
 mod "puppetlabs-rancher",
 	:git => 'https://github.com/puppetlabs/puppetlabs-rancher.git'
