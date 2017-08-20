@@ -12,7 +12,7 @@ class profiles::etcd () {
     dump   => 0,
     passno => 0,
   }
-  file { '/var/etcd/backups':
+  file { ['/var/etcd', '/var/etcd/backups']:
     ensure => 'directory',
     owner  => 'root',
     group  => 'wheel',
