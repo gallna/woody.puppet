@@ -16,7 +16,7 @@ class profiles::etcd () {
     ensure => 'directory',
     owner  => 'root',
     group  => 'wheel',
-    mode   => '0750',
+    mode   => '0777',
   } -> class { '::nfs':
     client_enabled => true,
     nfs_v4_client  => true,
