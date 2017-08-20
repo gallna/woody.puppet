@@ -15,7 +15,7 @@ class profiles::etcd () {
   file { ['/var/etcd', '/var/etcd/backups']:
     ensure => 'directory',
     owner  => 'root',
-    group  => 'wheel',
+    group  => 'root',
     mode   => '0777',
   } -> class { '::nfs':
     client_enabled => true,
