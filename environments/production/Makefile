@@ -106,6 +106,9 @@ enable:
 clean:
 	rm -rf facts.d
 
+upload:
+	../../../bin/master.puppet.sh
+
 librarian:
 	@if [[ $$(expr $$(date +%s) - $$(date --reference=Puppetfile.lock +%s)) -gt 3600 ]]; then \
 		librarian-puppet install --verbose && touch Puppetfile.lock; \
