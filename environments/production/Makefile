@@ -4,35 +4,63 @@ group ?= file
 collective ?= mcollective
 clientcert ?= web01.example.com
 environment ?= production
+user_facts = environment=$(environment) clientcert=$(clientcert) role=$(role) group=$(group) collective=$(collective)
 
 SHELL = /bin/bash
-user_facts = environment=$(environment) clientcert=$(clientcert) role=$(role) group=$(group) collective=$(collective)
-spec_classes = $(wildcard spec/classes/*.rb)
-spec_acceptance = $(wildcard spec/acceptance/*.rb)
+facter_facts = /home/tomasz/.puppetlabs/opt/facter
 environmentpath = environments
 manifestpath = manifests
 localmodules  = site
 modulepath  = modules
 hiera = hiera.yaml
+
 manifests ?= $(wildcard $(manifestpath)/*.pp)
+spec_classes = $(wildcard spec/classes/*.rb)
+spec_acceptance = $(wildcard spec/acceptance/*.rb)
+
 puppet = /opt/puppetlabs/bin/puppet
 facter = /opt/puppetlabs/bin/facter
 verbose = $(addprefix --,verbose show_diff summarize report test $(noop))
-facter_facts = /home/tomasz/.puppetlabs/opt/facter
 
+# make site/profiles/manifests/nfs/nfsf.pp
+# 	Validate syntax, include and test profiles::nfs::nfsf class
+#
+# make manifests/site.pp
+# 	Validate syntax, and run puppet apply against site.pp manifest
+#
+# role=agent make clean apply
+# 	Run puppet apply as agent
 .PHONY: apply agent noop info
 
-disable:
-	$(puppet) agent --disable
-
-enable:
-	$(puppet) agent --enable
-
 facts: ; $(puppet_facts)
+
+agent: ; $(puppet_agent)
+
+apply: manifests/site.pp
+
+manifests/%.pp: librarian facts.d/site.txt facts ; $(puppet_parser) && $(puppet_apply)
+
+site/%.pp: librarian facts.d/site.txt facts; $(puppet_parser) && $(puppet_execute)
 
 define puppet_facts =
 	$(call SAY,1,$(user_facts))
 	$(call SAY,2,$(shell $(facter) environment clientcert role group collective))
+endef
+
+define puppet_agent =
+	$(puppet) agent --noop $(verbose)
+endef
+
+define puppet_tags =
+	$(puppet) agent --noop $(verbose) --tags $(call class_name, $@)  --waitforcert=60
+endef
+
+define puppet_execute =
+	$(puppet) apply --noop $(verbose) --execute 'include $(call class_name, $@)'
+endef
+
+define puppet_parser =
+	$(puppet) parser validate $@
 endef
 
 .ONESHELL:
@@ -49,22 +77,6 @@ define puppet_apply =
 	esac
 endef
 
-define puppet_agent =
-	$(puppet) agent --noop $(verbose)
-endef
-
-define puppet_tags =
-	$(puppet) agent --noop $(verbose) --waitforcert=60 --tags $(shell sed -n "s/class \+\([a-zA-Z0-9:]*$$(basename $@ .pp)\).*/\1/p" $@)
-endef
-
-site/%.pp: librarian facts.d/site.txt facts ; $(puppet_tags)
-
-manifests/%.pp: librarian facts.d/site.txt facts ; $(puppet_apply)
-
-apply:
-	$(MAKE) manifests/site.pp
-
-agent: ; $(puppet_agent)
 
 server:
 	puppet master --no-daemonize --verbose
@@ -72,6 +84,7 @@ server:
 classes: facts.d/facter.yaml
 	/opt/puppetlabs/bin/hiera --config $(hiera) --debug -y facts.d/facter.yaml classes $($(user_facts))
 	/opt/puppetlabs/bin/puppet apply --noop -e "notice(lookup('classes', {merge => unique}))"
+
 
 facts.d:
 	mkdir -p $@ $(facter_facts)/$@
@@ -83,16 +96,20 @@ facts.d/%.txt: facts.d
 facts.d/%.yaml: facts.d
 	$(facter) -py >$@
 
+
+disable:
+	$(puppet) agent --disable
+
+enable:
+	$(puppet) agent --enable
+
 clean:
 	rm -rf facts.d
 
-define librarian =
+librarian:
 	@if [[ $$(expr $$(date +%s) - $$(date --reference=Puppetfile.lock +%s)) -gt 3600 ]]; then \
 		librarian-puppet install --verbose && touch Puppetfile.lock; \
 	fi
-endef
-
-librarian: ; $(librarian)
 
 define bundle =
 	@if [[ $$(expr $$(date +%s) - $$(date --reference=Rakefile +%s)) -gt 3600 ]]; then \
@@ -109,3 +126,6 @@ $(spec_acceptance): bundle
 	rspec $@
 
 SAY = $(info $(shell echo -e "\e[9$(1)m\e[7;1mSAY:\e[27m ")$(2)$(shell echo -e "\x1b[0m"))
+
+# Extracts class name from *.pp file
+class_name = $(shell sed -n "s/class \+\([a-zA-Z0-9:]*$$(basename $(1) .pp)\).*/\1/p" $(1))
