@@ -13,6 +13,7 @@ puppetdb::postgres_version: "9.6"
 puppetdb::manage_dbserver: false
 puppetdb::database_host: localhost
 puppetdb::database_port: 15432
+puppetdb::globals::version: 4.4.0-1puppetlabs1
 
 mcollective::server: true
 mcollective::client: true
